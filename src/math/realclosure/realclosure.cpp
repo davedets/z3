@@ -1087,9 +1087,11 @@ namespace realclosure {
             case extension::TRANSCENDENTAL: return false;
             case extension::INFINITESIMAL:  return true;
             case extension::ALGEBRAIC:      return to_algebraic(ext)->depends_on_infinitesimals();
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 return false;
+#endif
             }
         }
 
@@ -2489,9 +2491,11 @@ namespace realclosure {
                 case extension::TRANSCENDENTAL: return false;
                 case extension::INFINITESIMAL:  return false;
                 case extension::ALGEBRAIC: return is_algebraic_int(a);
+#ifndef __clang__
                 default:
                     UNREACHABLE();
                     return false;
+#endif
                 }
             }
         }
@@ -4123,9 +4127,11 @@ namespace realclosure {
                 case MPBQ:
                     sign = eval_sign_at(psz, p, b);
                     break;
+#ifndef __clang__
                 default:
                     UNREACHABLE();
                     break;
+#endif
                 }
                 if (sign == 0)
                     continue;
@@ -4966,9 +4972,11 @@ namespace realclosure {
             case extension::TRANSCENDENTAL: determine_transcendental_sign(v); r = true; break; // it is never zero
             case extension::INFINITESIMAL:  determine_infinitesimal_sign(v);  r = true; break; // it is never zero
             case extension::ALGEBRAIC:      r = determine_algebraic_sign(v); break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 r = false;
+#endif
             }
             TRACE(rcf_determine_sign_bug,
                   tout << "result: " << r << "\n";

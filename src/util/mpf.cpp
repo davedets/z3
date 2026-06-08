@@ -1147,7 +1147,9 @@ void mpf_manager::round_to_integral(mpf_rounding_mode rm, mpf const & x, mpf & o
                 m_mpz_manager.inc(div);
             break;
         case MPF_ROUND_TOWARD_ZERO:
+#ifndef __clang__
         default:
+#endif
             /* nothing */;
         }
 
@@ -1210,7 +1212,9 @@ void mpf_manager::to_sbv_mpq(mpf_rounding_mode rm, const mpf & x, scoped_mpq & o
         case MPF_ROUND_TOWARD_POSITIVE: inc = (!x.sign && (round || sticky)); break;
         case MPF_ROUND_TOWARD_NEGATIVE: inc = (x.sign && (round || sticky)); break;
         case MPF_ROUND_TOWARD_ZERO: inc = false; break;
+#ifndef __clang__
         default: UNREACHABLE();
+#endif
         }
         if (inc) m_mpz_manager.inc(z);
         TRACE(mpf_dbg_sbv,
@@ -2047,7 +2051,9 @@ void mpf_manager::round(mpf_rounding_mode rm, mpf & o) {
     case MPF_ROUND_TOWARD_POSITIVE: inc = (!o.sign && (round || sticky)); break;
     case MPF_ROUND_TOWARD_NEGATIVE: inc = (o.sign && (round || sticky)); break;
     case MPF_ROUND_TOWARD_ZERO: inc = false; break;
+#ifndef __clang__
     default: UNREACHABLE();
+#endif
     }
 
     TRACE(mpf_dbg, tout << "Rounding increment -> significand +" << (int)inc << std::endl;);
@@ -2115,7 +2121,9 @@ void mpf_manager::round_sqrt(mpf_rounding_mode rm, mpf & o) {
     case MPF_ROUND_TOWARD_NEGATIVE: break;
     case MPF_ROUND_TOWARD_ZERO: break;
     case MPF_ROUND_TOWARD_POSITIVE: inc = round || sticky; break;
+#ifndef __clang__
     default: UNREACHABLE();
+#endif
     }
 
     TRACE(mpf_dbg, tout << "last=" << last << " round=" << round << " sticky=" << sticky << " --> inc=" << inc << std::endl;);

@@ -1375,8 +1375,10 @@ namespace nlsat {
                 case trail::UPDT_EQ:
                     undo_updt_eq(t.m_old_eq);
                     break;
+#ifndef __clang__
                 default:
                     break;
+#endif
                 }
                 m_trail.pop_back();
             }
@@ -3314,9 +3316,11 @@ namespace nlsat {
             case atom::ROOT_GT: return !l.sign();
             case atom::ROOT_LE: return l.sign();
             case atom::ROOT_GE: return l.sign();
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 return false;
+#endif
             }
         }
 

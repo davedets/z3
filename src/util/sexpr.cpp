@@ -180,8 +180,10 @@ void sexpr::display_atom(std::ostream & out) const {
     case sexpr::kind_t::KEYWORD:
         out << static_cast<sexpr_symbol const *>(this)->m_val;
         break;
+#ifndef __clang__
     default:
         UNREACHABLE();
+#endif
     }
 }
 
@@ -255,8 +257,10 @@ void sexpr_manager::del(sexpr * n) {
             static_cast<sexpr_symbol*>(n)->~sexpr_symbol();
             m_allocator.deallocate(sizeof(sexpr_symbol), n);
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
     }
 }

@@ -187,8 +187,10 @@ private:
         case Q_exists_neg: return is_forall;
         case Q_none_pos: return true;
         case Q_none_neg: return true;
+#ifndef __clang__	  
         default:
             UNREACHABLE();
+#endif
         }
         return false;
     }

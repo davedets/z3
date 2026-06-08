@@ -101,8 +101,10 @@ void invoke_exit_action(unsigned int code) {
             default:
                 throw default_exception("unknown");
         }
+#ifndef __clang__
     default:
         exit(code);
+#endif
     }
 }
 
@@ -191,7 +193,9 @@ void invoke_debugger() {
             }
             return;
         case debug_action::ask:
+#ifndef __clang__
         default:
+#endif
             a = ask_debug_action(std::cin);
         }
     }

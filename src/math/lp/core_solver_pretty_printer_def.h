@@ -136,9 +136,11 @@ template <typename T, typename X> void core_solver_pretty_printer<T, X>::adjust_
         break;
     case column_type::free_column:
         break;
+#ifndef __clang__	
     default:
         UNREACHABLE();
         break;
+#endif
     }
 }
 

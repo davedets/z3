@@ -467,8 +467,10 @@ public:
         case column_type::free_column:
             out << "[-oo, oo]";
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         if (print_nl)
             out << "\n";

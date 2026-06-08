@@ -404,7 +404,9 @@ extern "C" {
         case AST_QUANTIFIER: return Z3_QUANTIFIER_AST;
         case AST_SORT:       return Z3_SORT_AST;
         case AST_FUNC_DECL:  return Z3_FUNC_DECL_AST;
+#ifndef __clang__
         default:             return Z3_UNKNOWN_AST;
+#endif
         }
         Z3_CATCH_RETURN(Z3_UNKNOWN_AST);
     }
@@ -1045,8 +1047,10 @@ extern "C" {
         case Z3_PRINT_SMTLIB2_COMPLIANT: 
             buffer << mk_ismt2_pp(to_ast(a), mk_c(c)->m());
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         return mk_c(c)->mk_external_string(std::move(buffer).str());
         Z3_CATCH_RETURN(nullptr);

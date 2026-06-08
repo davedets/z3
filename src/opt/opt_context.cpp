@@ -547,7 +547,9 @@ namespace opt {
         case O_MAXIMIZE: return execute_min_max(obj.m_index, committed, scoped, true);
         case O_MINIMIZE: return execute_min_max(obj.m_index, committed, scoped, false);
         case O_MAXSMT: return execute_maxsat(obj.m_id, committed, scoped);
+#ifndef __clang__
         default: UNREACHABLE(); return l_undef;
+#endif
         }
     }
     
@@ -1277,7 +1279,9 @@ namespace opt {
         case O_MAXIMIZE: name = "maximize"; break;
         case O_MINIMIZE: name = "minimize"; break;
         case O_MAXSMT: name = "maxsat"; break;
+#ifndef __clang__
         default: break;
+#endif
         }
         func_decl* f = m.mk_fresh_func_decl(name,"", domain.size(), domain.data(), m.mk_bool_sort());
         m_objective_fns.insert(f, index);
@@ -1650,9 +1654,11 @@ namespace opt {
             return obj.m_adjust_value(m_optsmt.get_upper(obj.m_index));
         case O_MAXIMIZE: 
             return obj.m_adjust_value(m_optsmt.get_lower(obj.m_index));
+#ifndef __clang__
         default:
             UNREACHABLE();
             return inf_eps();
+#endif
         }        
     }
 
@@ -1668,9 +1674,11 @@ namespace opt {
             return obj.m_adjust_value(m_optsmt.get_lower(obj.m_index));
         case O_MAXIMIZE: 
             return obj.m_adjust_value(m_optsmt.get_upper(obj.m_index));
+#ifndef __clang__
         default:
             UNREACHABLE();
             return inf_eps();
+#endif
         }
     }
 
@@ -1840,9 +1848,11 @@ namespace opt {
             case O_MAXSMT: 
                 visitor.collect(obj.m_terms);
                 break;
+#ifndef __clang__
             default: 
                 UNREACHABLE();
                 break;
+#endif
             }
         }
 
@@ -1885,9 +1895,11 @@ namespace opt {
                     out << ")\n";
                 }
                 break;
+#ifndef __clang__
             default: 
                 UNREACHABLE();
                 break;
+#endif
             }
         }        
         if (is_internal && mc) {

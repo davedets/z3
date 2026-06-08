@@ -1057,8 +1057,10 @@ bool fpa_util::contains_floats(ast * a) {
         }
         break;
     }
+#ifndef __clang__
     default:
         UNREACHABLE();
+#endif
     }
 
     return false;

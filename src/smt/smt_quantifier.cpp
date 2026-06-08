@@ -120,9 +120,11 @@ namespace smt {
                 out << "[eq-expl] #" << en->get_owner_id() << " unknown ; #" << target->get_owner_id() << "\n";
             }
             break;
+#ifndef __clang__
         default:
             out << "[eq-expl] #" << en->get_owner_id() << " unknown ; #" << target->get_owner_id() << "\n";
             break;
+#endif
         }
     }
 

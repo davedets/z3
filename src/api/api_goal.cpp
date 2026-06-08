@@ -65,9 +65,11 @@ extern "C" {
         case goal::UNDER:   return Z3_GOAL_UNDER;
         case goal::OVER:    return Z3_GOAL_OVER;
         case goal::UNDER_OVER: return Z3_GOAL_UNDER_OVER;
+#ifndef __clang__
         default:
             UNREACHABLE();
             return Z3_GOAL_UNDER_OVER;
+#endif
         }
         Z3_CATCH_RETURN(Z3_GOAL_UNDER_OVER);
     }

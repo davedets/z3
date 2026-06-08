@@ -285,9 +285,11 @@ namespace dd {
             return cnf_size(m_cost_bdd);
         case dnf_cost:
             return dnf_size(m_cost_bdd);
+#ifndef __clang__
         default:
             UNREACHABLE();
             return 0;
+#endif
         }
     }
 

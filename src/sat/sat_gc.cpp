@@ -64,9 +64,11 @@ namespace sat {
                 return;
             gc_dyn_psm();
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         if (m_ext) m_ext->gc();
         if (gc > 0 && should_defrag()) {

@@ -644,9 +644,11 @@ namespace smt {
             display_literals_smt2(out, lits);
             break;
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         return out << "\n";
     }
@@ -672,9 +674,11 @@ namespace smt {
             out << lits;
             break;
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         return out << "\n";
     }

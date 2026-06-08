@@ -800,8 +800,10 @@ namespace lp {
                 return true;
             }
             return false;
+#ifndef __clang__
         default:
             SASSERT(false);
+#endif
         }
         return false;
     }

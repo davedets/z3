@@ -744,15 +744,19 @@ namespace pb {
                     for (literal l : m_lemma) process_antecedent(~l, offset);
                     break;
                 }
+#ifndef __clang__
                 default:
                     UNREACHABLE();
                     break;
+#endif
                 }
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
             
             SASSERT(validate_lemma());            
@@ -1079,9 +1083,11 @@ namespace pb {
                 }
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }            
 
             SASSERT(validate_lemma());
@@ -1701,7 +1707,9 @@ namespace pb {
         switch (c.tag()) {
         case pb::tag_t::card_t: get_antecedents(l, c.to_card(), r); break;
         case pb::tag_t::pb_t: get_antecedents(l, c.to_pb(), r); break;
+#ifndef __clang__
         default: UNREACHABLE(); break;            
+#endif
         }
         if (get_config().m_drat && m_solver && !probing) {
             literal_vector lits;
@@ -1877,8 +1885,10 @@ namespace pb {
                 if (s().m_phase[l.var()] == !l.sign()) ++r;
             }
             break;
+#ifndef __clang__
         default:
             break;
+#endif
         }
         c.set_psm(r);
     }
@@ -2255,8 +2265,10 @@ namespace pb {
         case pb::tag_t::pb_t:
             recompile(c.to_pb());
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }                
     }
 
@@ -2889,8 +2901,10 @@ namespace pb {
             case pb::tag_t::pb_t:
                 sub = subsumes(p1, c->to_pb()); 
                 break;
+#ifndef __clang__
             default: 
                 break;
+#endif
             }
             if (sub) {
                 ++m_stats.m_num_pb_subsumes;                
@@ -3119,8 +3133,10 @@ namespace pb {
                 result->add_pb_ge(p.lit(), wlits, p.k(), p.learned());
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }                
         }
     }
@@ -3355,9 +3371,11 @@ namespace pb {
             return active2card();
         case sat::PB_LEMMA_PB:
             return active2constraint();
+#ifndef __clang__
         default:
             UNREACHABLE();
             return nullptr;
+#endif
         }
     }
 
@@ -3480,9 +3498,11 @@ namespace pb {
             if (p.lit() != sat::null_literal) ineq.push(~p.lit(), offset * p.k());
             break;
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
     }
 

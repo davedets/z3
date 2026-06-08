@@ -258,9 +258,11 @@ Notes:
                     return unate_ge(full, k, n, xs);
                 case sorting_network_encoding::circuit_at_most:
                     return circuit_ge(full, k, n, xs); 
+#ifndef __clang__
                 default:
                     UNREACHABLE();
                     return xs[0];
+#endif
                 }
             }
         }
@@ -288,9 +290,11 @@ Notes:
                 case sorting_network_encoding::ordered_at_most:
                     return mk_ordered_atmost_1(full, n, xs);
                     
+#ifndef __clang__
                 default:
                     UNREACHABLE();
                     return xs[0];
+#endif
                 }
             }
             else {
@@ -308,9 +312,11 @@ Notes:
                     return unate_le(full, k, n, xs); 
                 case sorting_network_encoding::circuit_at_most:
                     return circuit_le(full, k, n, xs); 
+#ifndef __clang__
                 default:                    
                     UNREACHABLE();
                     return xs[0];
+#endif
                 }
             }
         }
@@ -349,9 +355,11 @@ Notes:
                     return unate_eq(k, n, xs);              
                 case sorting_network_encoding::circuit_at_most:
                     return circuit_eq(k, n, xs);        
+#ifndef __clang__
                 default:                    
                     UNREACHABLE();
                     return xs[0];
+#endif
                 }
             }
         }
@@ -491,9 +499,11 @@ Notes:
                 return carry[k-1];
             case EQ:
                 return mk_and(mk_not(carry[k]), carry[k-1]);
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 return xs[0];
+#endif
             }
         }
 
@@ -584,9 +594,11 @@ Notes:
                 eqs.push_back(mk_not(ovfl));
                 return mk_and(eqs);
             }                
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 return xs[0];
+#endif
             }            
         }
 
@@ -709,9 +721,11 @@ Notes:
                 break;
             case sorting_network_encoding::ordered_at_most:
                 return mk_ordered_exactly_1(full, n, xs);
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 return mk_ordered_exactly_1(full, n, xs);                
+#endif
             }
 
             if (full) {

@@ -545,9 +545,11 @@ void theory_diff_logic<Ext>::propagate() {
             }
             break;
         }
+#ifndef __clang__
         default:
             SASSERT(false);
             propagate_core();
+#endif
         }
     }
     else {

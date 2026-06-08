@@ -338,9 +338,11 @@ ast * ast_translation::process(ast const * _n) {
                 mk_func_decl(to_func_decl(n), fr);
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
         }
     }

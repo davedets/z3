@@ -209,9 +209,11 @@ namespace arith {
         case hint_type::nla_h:
             name = "nla";
             break;
+#ifndef __clang__
         default:
             name = "unknown-arithmetic";
             break;
+#endif
         }
 
         auto push_eq = [&](bool is_eq, enode* x, enode* y) {

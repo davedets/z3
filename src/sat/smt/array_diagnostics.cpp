@@ -57,8 +57,10 @@ namespace array {
             return out << "congruence " << ctx.bpp(r.n) << " " << ctx.bpp(r.select);
         case axiom_record::kind_t::is_choice:
             return out << "choice " << ctx.bpp(r.n);
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         return out;
     }

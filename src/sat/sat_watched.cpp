@@ -103,8 +103,10 @@ namespace sat {
                     out << "ext: " << w.get_ext_constraint_idx();
                 }
                 break;
+#ifndef __clang__
             default: 
                 UNREACHABLE();
+#endif
             }
         }
         return out;

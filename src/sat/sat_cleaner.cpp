@@ -71,9 +71,11 @@ namespace sat {
                     *it_prev = *it2;
                     ++it_prev;
                     break;
+#ifndef __clang__
                 default:
                     UNREACHABLE();
                     break;
+#endif
                 }
             }
             wlist.set_end(it_prev);

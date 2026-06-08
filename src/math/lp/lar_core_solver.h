@@ -169,8 +169,10 @@ public:
         case column_type::boxed:
         case column_type::fixed:
             return true;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         return false;
     }
@@ -184,8 +186,10 @@ public:
         case column_type::boxed:
         case column_type::fixed:
             return true;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         return false;
     }

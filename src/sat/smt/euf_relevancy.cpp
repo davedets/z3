@@ -60,9 +60,11 @@ namespace euf {
             case update::set_qhead:
                 m_qhead = idx;
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
         }
         m_trail.shrink(sz);

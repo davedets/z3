@@ -25,7 +25,7 @@ Revision History:
 #define check_ast(T1,T2) if ((T1) != (T2)) { n1 = (T1); n2 = (T2); goto start; }
 #define check_zstring(S1, S2) if ((S1) != (S2)) return (S1) < (S2)
 
-#define check_parameter(p1, p2) {                               \
+#define check_parameter_main(p1, p2)                            \
     check_value(p1.get_kind(), p2.get_kind());                  \
     switch (p1.get_kind()) {                                    \
     case parameter::PARAM_INT:                                  \
@@ -48,12 +48,24 @@ Revision History:
         break;                                                  \
     case parameter::PARAM_ZSTRING:                              \
         check_zstring(p1.get_zstring(), p2.get_zstring());      \
-        break;                                                  \
-    default:                                                    \
-        UNREACHABLE();                                          \
-        break;                                                  \
-    }                                                           \
+        break
+
+#ifdef __clang__
+#define check_parameter(p1, p2)  {		\
+    check_parameter_main(p1, p2);		\
+    }						\
 }
+
+#else
+#define check_parameter(p1, p2) {		\
+    check_parameter_main(p1, p2);		\
+    default:					\
+        UNREACHABLE();				\
+        break;					\
+    }						\
+}
+
+#endif
 
 bool lt(ast * n1, ast * n2) {
     unsigned num;
@@ -132,9 +144,11 @@ bool lt(ast * n1, ast * n2) {
         n1 = to_var(n1)->get_sort();
         n2 = to_var(n2)->get_sort();
         goto start;
+#ifndef __clang__
     default:
         UNREACHABLE();
         return false;
+#endif
     }
 }
 

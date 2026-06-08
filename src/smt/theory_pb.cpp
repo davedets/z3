@@ -1644,8 +1644,10 @@ namespace smt {
             }            
             break;
         }
+#ifndef __clang__
         default:
             break;
+#endif
         }
         return result;
     }
@@ -1941,8 +1943,10 @@ namespace smt {
                 
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }            
             m_bound += offset * bound;
 

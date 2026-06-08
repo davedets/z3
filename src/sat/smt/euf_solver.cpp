@@ -418,9 +418,11 @@ namespace euf {
             }
             break;
         }
+#ifndef __clang__
         default:
             IF_VERBOSE(0, verbose_stream() << (unsigned)j.kind() << "\n");
             UNREACHABLE();
+#endif
         }
     }
 
@@ -1090,9 +1092,11 @@ namespace euf {
                 euf::enode* n = c.node();
                 return out << "euf literal propagation " << (sat::literal(n->bool_var(), n->value() == l_false)) << " " << m_egraph.bpp(n);
             } 
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 return out;
+#endif
             }                
         }
         else 

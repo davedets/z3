@@ -268,7 +268,9 @@ br_status bv_bounds::rewrite(unsigned limit, func_decl * f, unsigned num, expr *
                             nis_head = nis.size();
                             break;
                         }
+#ifndef __clang__
             default: UNREACHABLE();
+#endif
         }
     }
     if (!m_okay || !is_sat()) {

@@ -1020,8 +1020,10 @@ public:
         case lp_api::upper_t:
             k = lp::LE;
             break;
+#ifndef __clang__
         default:
             break;
+#endif
         }         
         auto vi = register_theory_var_in_lar_solver(b->get_var());
         if (vi == lp::null_lpvar) {
@@ -1653,8 +1655,10 @@ public:
             return FC_CONTINUE;
         case l_undef:
             return FC_GIVEUP;
+#ifndef __clang__	    
         default:
             break;
+#endif
         }
         return FC_GIVEUP;
     }
@@ -1796,9 +1800,11 @@ public:
         case l_undef:
             TRACE(arith, tout << "check feasible is undef\n";);
             return m.inc() ? FC_CONTINUE : FC_GIVEUP;
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         TRACE(arith, tout << "default giveup\n";);
         return FC_GIVEUP;
@@ -2106,8 +2112,10 @@ public:
             is_eq = true;
             pos = true;
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         TRACE(arith, tout << "is_lower: " << is_lower << " pos " << pos << "\n";);
         expr_ref atom(m);
@@ -4335,9 +4343,11 @@ public:
             case null_source:                    
                 out << idx << " null";
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break; 
+#endif
             }
         }
         for (lp::explanation::cimpq ev : evidence) 

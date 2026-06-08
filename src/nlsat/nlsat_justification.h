@@ -87,7 +87,9 @@ namespace nlsat {
         case justification::DECISION: return out << "decision";
         case justification::CLAUSE: return out << "clause";
         case justification::LAZY: return out << "lazy";
+#ifndef __clang__
         default: return out << "??";
+#endif
         }
     }
     

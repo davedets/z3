@@ -2206,8 +2206,10 @@ namespace smt {
             return get_value(v) >= k ? l_true : l_false;
         case B_UPPER:
             return get_value(v) <= k ? l_true : l_false;
+#ifndef __clang__
         default:
             return l_undef;
+#endif
         }
     }
 

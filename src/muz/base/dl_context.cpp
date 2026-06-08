@@ -324,8 +324,10 @@ namespace datalog {
         case SK_UINT64:
             dom = alloc(uint64_sort_domain, *this, s);
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         m_sorts.insert(s, dom);
     }
@@ -615,7 +617,9 @@ namespace datalog {
             m_rule_properties.check_background_free();
             break;
         case LAST_ENGINE:
+#ifndef __clang__
         default:
+#endif
             UNREACHABLE();
             break;
         }

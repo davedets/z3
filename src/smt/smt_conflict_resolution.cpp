@@ -112,7 +112,9 @@ namespace smt {
                   break;
               case eq_justification::JUSTIFICATION: tout << " justification\n";  break;
               case eq_justification::CONGRUENCE: tout << " congruence\n"; break;
+#ifndef __clang__
               default:  break;
+#endif
               });
 
         switch(js.get_kind()) {
@@ -140,8 +142,10 @@ namespace smt {
             }
             break;
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
     }
 
@@ -303,8 +307,10 @@ namespace smt {
         case b_justification::JUSTIFICATION:
             r = std::max(r, get_justification_max_lvl(js.get_justification()));
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
         return r;
     }
@@ -554,8 +560,10 @@ namespace smt {
             case b_justification::JUSTIFICATION:
                 process_justification(consequent, js.get_justification(), num_marks);
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
 
             while (true) {
@@ -914,9 +922,11 @@ namespace smt {
                 m_new_proofs.push_back(pr);
                 return pr;
             }
+#ifndef __clang__
         default:
             UNREACHABLE();
             return nullptr;
+#endif
         }
     }
 
@@ -1179,8 +1189,10 @@ namespace smt {
                 }
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
             lhs = lhs->m_trans.m_target;
         }
@@ -1320,8 +1332,10 @@ namespace smt {
                 }
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
         }
 
@@ -1443,8 +1457,10 @@ namespace smt {
             case b_justification::JUSTIFICATION:
                 process_justification_for_unsat_core(js.get_justification());
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
 
             if (m_ctx.is_assumption(consequent.var())) {

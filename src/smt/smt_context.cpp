@@ -1849,9 +1849,11 @@ namespace smt {
         case PS_OCCURRENCE: {
             return m_lit_occs[l.index()] > m_lit_occs[(~l).index()];
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
             return false;
+#endif
         }
     }
 
@@ -3852,8 +3854,10 @@ namespace smt {
             case RS_ARITHMETIC:
                 m_restart_threshold = static_cast<unsigned>(m_restart_threshold + m_fparams.m_restart_factor);
                 break;
+#ifndef __clang__
             default:
                 break;
+#endif
             }
         }
         m_num_conflicts_since_restart = 0;

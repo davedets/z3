@@ -1158,9 +1158,11 @@ namespace sat {
                     it2++;
                 }
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
         }
         wlist.set_end(it2);
@@ -1708,9 +1710,11 @@ namespace sat {
             return m_best_phase[next];
         case PS_RANDOM:
             return (m_rand() % 2) == 0;
+#ifndef __clang__
         default:
             UNREACHABLE();
             return false;
+#endif
         }
     }
 
@@ -2401,9 +2405,11 @@ namespace sat {
             break;
         case RS_STATIC:
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         CASSERT("sat_restart", check_invariant());
     }
@@ -2542,9 +2548,11 @@ namespace sat {
                     process_antecedent(l, num_marks);                
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
             
             bool_var c_var;
@@ -2712,9 +2720,11 @@ namespace sat {
             }
             break;
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
     }
 
@@ -2835,9 +2845,11 @@ namespace sat {
             for (literal l : m_ext_antecedents) 
                 level = update_max_level(l, level, unique_max);
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         TRACE(sat, tout << "max-level " << level << " " << unique_max << "\n");
         return level;
@@ -2876,8 +2888,10 @@ namespace sat {
             case BH_CHB:
                 m_last_conflict[var] = m_stats.m_conflict;
                 break;
+#ifndef __clang__
             default:
                 break;
+#endif
             }
             if (var_lvl == m_conflict_lvl)
                 num_marks++;
@@ -3010,9 +3024,11 @@ namespace sat {
             }
 
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
         m_rephase_inc += m_config.m_rephase_base;
         m_rephase_lim += m_rephase_inc;
@@ -3222,9 +3238,11 @@ namespace sat {
                 }
                 break;
             }
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
             TRACE(sat_conflict, 
                   display_justification(tout << var << " ",js) << "\n";);
@@ -3957,8 +3975,10 @@ namespace sat {
             if (m_ext) 
                 m_ext->display_justification(out << "ext ", js.get_ext_justification_idx());            
             break;
+#ifndef __clang__
         default:
             break;
+#endif
         }
         return out;
     }
@@ -4621,9 +4641,11 @@ namespace sat {
             }
             break;
         }
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif	
         }
         TRACE(sat, display_index_set(tout << lit << ": " , s) << "\n";);
         return all_found;

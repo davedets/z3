@@ -2203,8 +2203,10 @@ namespace smt2 {
             case EF_PATTERN:
                 pop_pattern_frame(static_cast<pattern_frame*>(fr));
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
             SASSERT(curr_is_rparen());
             next(); // consume ')'
@@ -2259,9 +2261,11 @@ namespace smt2 {
                     case PES_CONTINUE:
                         // do nothing
                         break;
+#ifndef __clang__
                     default:
                         UNREACHABLE();
                         break;
+#endif
                     }
                 }
             }

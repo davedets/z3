@@ -63,9 +63,11 @@ bool lp_primal_core_solver<T, X>::correctly_moved_to_bounds(unsigned j) const {
         return this->m_x[j] == this->m_upper_bounds[j];
     case column_type::free_column:
         return true;
+#ifndef __clang__
     default:
         UNREACHABLE();
         return false;
+#endif
     }
 }
 
@@ -92,9 +94,11 @@ bool lp_primal_core_solver<T, X>::column_is_benefitial_for_entering_basis(unsign
         if (dj < zero_of_type<T>() && this->m_x[j] == this->m_upper_bounds[j])
             return true;
         break;
+#ifndef __clang__
     default:
         UNREACHABLE();
         break;
+#endif
     }
     return false;
 }

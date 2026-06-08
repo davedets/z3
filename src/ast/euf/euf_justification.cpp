@@ -44,9 +44,11 @@ namespace euf {
         case kind_t::equality_t: 
             return out << "equality #" << m_n1->get_id() << " == #" << m_n2->get_id();
             
+#ifndef __clang__
         default:
             UNREACHABLE();
             return out;
+#endif
         }
         return out;
     }

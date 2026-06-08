@@ -70,9 +70,11 @@ namespace array {
             return assert_congruent_axiom(r.n->get_expr(), r.select->get_expr());
         case axiom_record::kind_t::is_choice:
             return assert_choice_axiom(r.n->get_app());
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif	    
         }
         return false;
     }

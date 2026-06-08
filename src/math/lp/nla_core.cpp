@@ -65,7 +65,9 @@ bool core::compare_holds(const rational& ls, llc cmp, const rational& rs) const 
     case llc::GT: return ls > rs;
     case llc::EQ: return ls == rs;
     case llc::NE: return ls != rs;
+#ifndef __clang__      
     default: SASSERT(false);
+#endif
     };
         
     return false;
@@ -284,9 +286,11 @@ bool core::explain_ineq(lemma_builder& lemma, const lp::lar_term& t, llc cmp, co
         // TBD - NB: does this work for Reals?
         r = explain_lower_bound(t, rs + rational(1), exp) || explain_upper_bound(t, rs - rational(1), exp);           
         break;
+#ifndef __clang__
     default:
         UNREACHABLE();
         return false;
+#endif
     }
     if (r) {
         lemma &= exp;
@@ -1486,9 +1490,11 @@ unsigned core::get_var_weight(lpvar j) const {
     case lp::column_type::free_column:
         k = 9;
         break;
+#ifndef __clang__
     default:
         UNREACHABLE();
         break;
+#endif
     }
     if (is_monic_var(j)) {
         k++;

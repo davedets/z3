@@ -603,7 +603,9 @@ void hwf_manager::set_rounding_mode(mpf_rounding_mode rm)
         SETRM(FE_TOWARDZERO);
         break;
     case MPF_ROUND_NEAREST_TAWAY:
+#ifndef __clang__
     default:
+#endif
         UNREACHABLE(); // Note: MPF_ROUND_NEAREST_TAWAY is not supported by the hardware!
     }
 #endif

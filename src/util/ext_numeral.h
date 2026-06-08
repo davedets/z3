@@ -280,15 +280,19 @@ bool lt(numeral_manager & m,
             return m.lt(a, b);
         case EN_PLUS_INFINITY:
             return true;
+#ifndef __clang__
         default:
             UNREACHABLE();
             return false;
+#endif
         }
     case EN_PLUS_INFINITY:
         return false;
+#ifndef __clang__
     default:
         UNREACHABLE();
         return false;
+#endif
     }
 }
 

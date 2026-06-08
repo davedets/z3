@@ -240,9 +240,11 @@ public:
                 break;
             }
                 
+#ifndef __clang__
             default:
                 UNREACHABLE();
                 break;
+#endif
             }
         }        
         

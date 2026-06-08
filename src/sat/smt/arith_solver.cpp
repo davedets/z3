@@ -851,8 +851,10 @@ namespace arith {
         case lp_api::upper_t:
             k = lp::LE;
             break;
+#ifndef __clang__
         default:
             break;
+#endif
         }
         auto vi = register_theory_var_in_lar_solver(b->get_var());
         if (vi == lp::null_lpvar) {
@@ -1018,8 +1020,10 @@ namespace arith {
                 return sat::check_result::CR_CONTINUE;
             case l_true:
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
         }
 
@@ -1484,7 +1488,9 @@ namespace arith {
         case lp::GT: is_lower = false; sign = true;  break;
         case lp::EQ: is_eq = true;     sign = false; break;
         case lp::NE: is_eq = true;     sign = true;  break;
+#ifndef __clang__
         default: UNREACHABLE();
+#endif
         }
         // TBD utility: lp::lar_term term = mk_term(ineq.m_poly);
         // then term is used instead of ineq.m_term

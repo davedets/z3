@@ -168,8 +168,10 @@ class func_decl_dependencies::top_sort {
                     return true;
                 }
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
         }
         return false;

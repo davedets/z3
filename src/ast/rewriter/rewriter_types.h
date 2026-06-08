@@ -41,7 +41,9 @@ inline std::ostream& operator<<(std::ostream& out, br_status st) {
     case BR_REWRITE_FULL: return out << "rewrite_full";
     case BR_DONE: return out << "done";
     case BR_FAILED: return out << "failed";
+#ifndef __clang__
     default: return out << "unknown";
+#endif
     }
 }
 

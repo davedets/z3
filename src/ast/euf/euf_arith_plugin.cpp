@@ -104,8 +104,10 @@ namespace euf {
         case undo_t::undo_mul:
             m_mul.undo();
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         }
     }
         

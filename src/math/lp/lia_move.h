@@ -46,8 +46,10 @@ namespace lp {
             return "undef";
         case lia_move::cancelled:
             return "cancelled";
+#ifndef __clang__
         default:
             UNREACHABLE();
+#endif
         };
         return "strange";
     }

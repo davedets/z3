@@ -161,8 +161,10 @@ namespace sat {
             case l_true:
                 update_model();
                 break;
+#ifndef __clang__
             default:
                 break;
+#endif
             }
         }
         if (assignment.size() == 1) {

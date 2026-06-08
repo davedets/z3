@@ -53,9 +53,11 @@ namespace smt {
             return status::lemma;
         case CLS_TH_LEMMA:
             return status::th_lemma;
+#ifndef __clang__
         default:
             UNREACHABLE();
             return status::lemma;
+#endif
         }
     }
 
@@ -218,8 +220,10 @@ namespace smt {
             case clause_proof::status::deleted:
                 display_literals(out << "(del", v) << ")\n";
                 break;
+#ifndef __clang__
             default:
                 UNREACHABLE();
+#endif
             }
             out.flush();
         }
@@ -286,8 +290,10 @@ namespace smt {
             return out << "th_lem";
         case clause_proof::status::deleted:
             return out << "del";
+#ifndef __clang__
         default:
             return out << "unkn";
+#endif
         }
     }
 

@@ -229,7 +229,9 @@ extern "C" {
                     return "roundTowardNegative";
                     break;
                 case MPF_ROUND_TOWARD_ZERO:
+#ifndef __clang__
                 default:
+#endif
                     return "roundTowardZero";
                     break;
                 }

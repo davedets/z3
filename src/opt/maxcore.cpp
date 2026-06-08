@@ -171,9 +171,11 @@ public:
         case s_primal_binary_rc2:
             m_trace_id = "rc2bin";
             break;
+#ifndef __clang__
         default:
             UNREACHABLE();
             break;
+#endif
         }
     }
 
@@ -267,8 +269,10 @@ public:
                 break;
             case l_undef:
                 return l_undef;
+#ifndef __clang__
             default:
                 break;
+#endif
             }
         }
         found_optimum();
@@ -309,8 +313,10 @@ public:
                 break;
             case l_undef:
                 return l_undef;
+#ifndef __clang__
             default:
                 break;
+#endif
             }
         }
         m_lower = m_upper;
