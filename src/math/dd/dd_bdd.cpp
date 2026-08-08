@@ -286,6 +286,10 @@ namespace dd {
         case dnf_cost:
             return dnf_size(m_cost_bdd);
         }
+        // This is necessary for GCC, which does not conclude that the
+        // switch above returns in all cases.
+        UNREACHABLE();
+        return 0;  
     }
 
     bool bdd_manager::is_bad_cost(double current_cost, double best_cost) const {
